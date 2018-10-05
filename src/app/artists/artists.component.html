@@ -1,0 +1,29 @@
+
+
+
+
+<select class="genres" (change) = "onChange($event.target.value)">  
+  <option *ngFor = "let genre of genres" value={{genre.id}} >{{genre.name}} </option>
+</select>
+
+
+<div class="search-results"
+infinite-scroll
+[infiniteScrollDistance]="scrollDistance"
+[infiniteScrollUpDistance]="scrollUpDistance"
+[infiniteScrollThrottle]="throttle"
+[alwaysCallback] = "true"
+(scrolled)="onScrollDown()"
+(scrolledUp)="onUp()">
+
+<div id = "artistsdiv">
+
+  <ul class="heroes">
+    <li *ngFor="let artist of filteredArtists">
+      <span class="badge">{{artist.id}}</span> {{artist.name}}
+    </li>
+  </ul>
+  
+</div>
+
+</div>
