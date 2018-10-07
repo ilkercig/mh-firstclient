@@ -6,6 +6,10 @@
   <option *ngFor = "let genre of genres" value={{genre.id}} >{{genre.name}} </option>
 </select>
 
+<h1>Simple grid example</h1>
+
+
+
 
 <div class="search-results"
 infinite-scroll
@@ -15,15 +19,8 @@ infinite-scroll
 [alwaysCallback] = "true"
 (scrolled)="onScrollDown()"
 (scrolledUp)="onUp()">
-
-<div id = "artistsdiv">
-
-  <ul class="heroes">
-    <li *ngFor="let artist of filteredArtists">
-      <span class="badge">{{artist.id}}</span> {{artist.name}}
-    </li>
-  </ul>
-  
-</div>
+  <div class="container">
+    <div *ngFor="let artist of filteredArtists"> {{artist.name}}</div>
+  </div>
 
 </div>

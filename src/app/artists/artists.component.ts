@@ -22,7 +22,8 @@ export class ArtistsComponent implements OnInit {
   genres : Genre[];
 
   ngOnInit() {
-    this.getArtists();
+    this.originalArtists = this.artistsService.getArtists();
+    this.filteredArtists = this.originalArtists;
     this.getGenres();
   }
   
@@ -30,10 +31,8 @@ export class ArtistsComponent implements OnInit {
   getArtists()
   {
     this.originalArtists = this.artistsService.getArtists();
-    this.originalArtists = this.originalArtists.concat(this.originalArtists);
-    this.originalArtists = this.originalArtists.concat(this.originalArtists);
-
-    this.filteredArtists = this.originalArtists;
+    this.originalArtists = this.originalArtists.concat( this.artistsService.getArtists());
+    
   }
 
   getGenres()
