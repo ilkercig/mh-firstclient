@@ -8,19 +8,7 @@
 
 <h1>Simple grid example</h1>
 
-
-
-
-<div class="search-results"
-infinite-scroll
-[infiniteScrollDistance]="scrollDistance"
-[infiniteScrollUpDistance]="scrollUpDistance"
-[infiniteScrollThrottle]="throttle"
-[alwaysCallback] = "true"
-(scrolled)="onScrollDown()"
-(scrolledUp)="onUp()">
   <div class="container">
     <div *ngFor="let artist of filteredArtists"> {{artist.name}}</div>
   </div>
 
-</div>

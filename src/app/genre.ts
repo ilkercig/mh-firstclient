@@ -1,10 +1,11 @@
 export class Genre {
-    id: number;
-    name: string;
 
-    constructor(id: number, name : string)
+    name: string;
+    id: number;
+
+    constructor(name : string, id: number)
     {
-        this.id = id;
         this.name = name;
+        this.id = id;
     }
   }

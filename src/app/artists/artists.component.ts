@@ -22,42 +22,35 @@ export class ArtistsComponent implements OnInit {
   genres : Genre[];
 
   ngOnInit() {
-    this.originalArtists = this.artistsService.getArtists();
-    this.filteredArtists = this.originalArtists;
-    this.getGenres();
+    this.genres = [];
+    this.originalArtists = [];
+    this.artistsService.artists$.subscribe(
+      data=> {
+      this.originalArtists = this.originalArtists.concat(data);
+      data.forEach(element => this.addDistinct(this.genres, element.genres));
+
+      if(this.selectedGenreId == null)
+        this.filteredArtists = this.originalArtists
+      else
+        this.filteredArtists = this.originalArtists.filter(a=>a.genres.some(g=>g.id == this.selectedGenreId))
+      },
+      err => console.error('Observer got an error: ' + err),
+      );
   }
+
   
-
-  getArtists()
-  {
-    this.originalArtists = this.artistsService.getArtists();
-    this.originalArtists = this.originalArtists.concat( this.artistsService.getArtists());
-    
-  }
-
-  getGenres()
-  {
-    this.genres = this.artistsService.getGenres();
-  }
-
+  
   onChange(genreId : number) :void
-  {
+  { 
     this.selectedGenreId = genreId;
     this.filteredArtists = this.originalArtists.filter(a=>a.genres.some(g=>g.id == genreId))
   }
 
-  onScrollDown() {
-    this.originalArtists = this.originalArtists.concat(this.originalArtists);
-    if(this.selectedGenreId != null)
-      this.filteredArtists = this.originalArtists.filter(a=>a.genres.some(g=>g.id == this.selectedGenreId))
-    else
-      this.filteredArtists = this.originalArtists;
-
+  addDistinct(source: Genre[], items: Genre[])
+  {
+      items.forEach(i=>{
+        if(!source.some(s=>s.id == i.id))
+          source.push(i);
+      });
   }
-
-  onUp() {
-    console.log('scrolled Upp!!');
-  }
-  
-
 }
