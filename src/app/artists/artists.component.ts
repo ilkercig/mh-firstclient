@@ -37,8 +37,6 @@ export class ArtistsComponent implements OnInit {
       err => console.error('Observer got an error: ' + err),
       );
   }
-
-  
   
   onChange(genreId : number) :void
   { 

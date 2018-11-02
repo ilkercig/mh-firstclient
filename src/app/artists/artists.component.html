@@ -1,14 +1,8 @@
-
-
-
-
 <select class="genres" (change) = "onChange($event.target.value)">  
   <option *ngFor = "let genre of genres" value={{genre.id}} >{{genre.name}} </option>
 </select>
 
-<h1>Simple grid example</h1>
-
-  <div class="container">
-    <div *ngFor="let artist of filteredArtists"> {{artist.name}}</div>
-  </div>
+<div class="container">
+  <div *ngFor="let artist of filteredArtists"> {{artist.name}}</div>
+</div>
 
